@@ -4,21 +4,22 @@ import invariant from "tiny-invariant";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
 	invariant(params.path, "Missing path params");
-
+	
 	const decodedPath = decodeURIComponent(params.path);
 	const author = decodedPath.split("__")[0];
 	const title = decodedPath.split("__")[1];
-
-	return json({ decodedPath, author, title });
+	
+	return json({ decodedPath, author, title }, { headers: {"Cache-Control": "public, max-age=3600"}});
 };
 
 const Page = () => {
 	const { decodedPath, author, title } = useLoaderData<typeof loader>();
+	const baseUrl = 'http://192.168.11.9:3005';
 
 	return (
 		<main className="w-full h-[100svh] flex flex-col items-center justify-center p-5">
 			<img
-				src={`http://localhost:3005/cover/${decodedPath}`}
+				src={`${baseUrl}/cover/${decodedPath}`}
 				alt="i"
 				className="rounded-lg max-h-96 md:max-h-[35rem] object-contain"
 			/>

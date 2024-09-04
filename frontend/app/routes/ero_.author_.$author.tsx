@@ -9,7 +9,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
 	const covers = await getAuthor(params.author);
 
-	return json({ covers });
+	return json({ covers }, { headers: {"Cache-Control": "public, max-age=3600"}});
 };
 
 const Page = () => {

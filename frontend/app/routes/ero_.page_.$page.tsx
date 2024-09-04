@@ -12,7 +12,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 	const totalPage = (await getTotalPage()) || "";
 	const covers = await getCovers(params.page);
 
-	return json({ covers, currentPage, totalPage });
+	return json({ covers, currentPage, totalPage }, { headers: {"Cache-Control": "public, max-age=3600"}});
 };
 
 const Page = () => {

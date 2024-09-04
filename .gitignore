@@ -1,5 +1,6 @@
 tmp
-backend.exe
+backend/backend.exe
+backend/backend
 .next
 node_modules
 next-env.d.ts
