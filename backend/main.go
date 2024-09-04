@@ -32,7 +32,7 @@ func main() {
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, World")
 	})
-	app.Get("/page/:page", getPagePaths)
+	app.Get("/page/:page", getPage)
 	app.Get("/cover/:path", getCover)
 	app.Get("/author/:path", getAuthor)
 	app.Get("/book/:path", getBook)
@@ -45,19 +45,19 @@ func main() {
 	app.Listen(port)
 }
 
-func getPagePaths(c *fiber.Ctx) error {
+func getPage(c *fiber.Ctx) error {
 	cacheMutex.Lock()
 	defer cacheMutex.Unlock()
-
-	// キャッシュが有効か確認
-	if time.Now().Before(cacheExpiration) && cachedPaths != nil {
-		// キャッシュが有効ならそのまま返却
-		return c.JSON(cachedPaths)
-	}
 
 	page, err := strconv.Atoi(c.Params("page"))
 	if err != nil {
 		c.Status(400).SendString("pageのパスが数字ではありません：" + err.Error())
+	}
+
+	// キャッシュが有効か確認
+	if time.Now().Before(cacheExpiration) && cachedPaths != nil {
+		// キャッシュが有効ならそのまま返却
+		return c.JSON(cachedPaths[page-1])
 	}
 
 	files, err := utils.CollectFiles(utils.GetENV("BOX_DIR"), utils.GetENV("SEARCH_FILE"))
