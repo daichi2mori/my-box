@@ -1,0 +1,6 @@
+tmp
+backend.exe
+.next
+node_modules
+next-env.d.ts
+certs

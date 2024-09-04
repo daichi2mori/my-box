@@ -1,0 +1,59 @@
+version: "3"
+
+silent: true
+
+tasks:
+  dev:
+    desc: Start dev server
+    deps:
+      - task: dev:backend
+      - task: dev:frontend
+
+  dev:backend:
+    desc: Start backend dev server
+    dir: ./backend
+    cmd: air
+
+  dev:frontend:
+    desc: Start frontend dev server
+    dir: ./frontend
+    deps:
+      - frontend:install-deps
+    cmd: bun run dev
+
+  frontend:install-deps:
+    desc: Install dependencies
+    dir: ./frontend
+    cmd: bun install
+
+  build:
+    desc: Build frontend and backend
+    deps:
+      - task: build:backend
+      - task: build:frontend
+
+  build:backend:
+    desc: Build backend
+    dir: ./backend
+    cmd: go build -ldflags="-s -w"
+
+  build:frontend:
+    desc: Build frontend
+    dir: ./frontend
+    cmd: bun run build
+
+  start:
+    desc: Start production
+    deps:
+      - task: start:backend
+      - task: start:frontend
+
+  start:backend:
+    desc: Start backend production
+    dir: ./backend
+    cmd: ./backend.exe
+
+  start:frontend:
+    desc: Start frontend production
+    dir: ./frontend
+    cmd: bun run start
