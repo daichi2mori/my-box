@@ -19,12 +19,12 @@ tasks:
     dir: ./frontend
     deps:
       - frontend:install-deps
-    cmd: pnpm run dev
+    cmd: bun run dev
 
   frontend:install-deps:
     desc: Install dependencies
     dir: ./frontend
-    cmd: pnpm install
+    cmd: bun install
 
   build:
     desc: Build frontend and backend
@@ -40,7 +40,7 @@ tasks:
   build:frontend:
     desc: Build frontend
     dir: ./frontend
-    cmd: pnpm run build
+    cmd: bun run build
 
   start:
     desc: Start production
@@ -56,4 +56,4 @@ tasks:
   start:frontend:
     desc: Start frontend production
     dir: ./frontend
-    cmd: pnpm run start
+    cmd: bun run start

@@ -14,14 +14,7 @@
 	},
 	"formatter": {
 		"enabled": true,
-		"include": [
-			"**/*.js",
-			"**/*.jsx",
-			"**/*.ts",
-			"**/*.tsx",
-			"**/*.json",
-			"**/*.mdx"
-		],
-		"ignore": ["node_modules", ".wrangler", "dist"]
+		"include": ["app/**/*.ts", "app/**/*.tsx"],
+		"ignore": ["node_modules", ".wrangler", "dist", "build"]
 	}
 }

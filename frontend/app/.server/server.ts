@@ -1,8 +1,6 @@
 export const getCovers = async (page: string) => {
 	try {
-		const res = await fetch(`http://localhost:3005/page/${page}`, {
-			next: { revalidate: 60 * 60 * 2 },
-		});
+		const res = await fetch(`http://localhost:3005/page/${page}`);
 		const covers: string[] = await res.json();
 		return covers;
 	} catch (e) {
@@ -12,9 +10,7 @@ export const getCovers = async (page: string) => {
 
 export const getAuthor = async (author: string) => {
 	try {
-		const res = await fetch(`http://localhost:3005/author/${author}`, {
-			next: { revalidate: 60 * 60 * 2 },
-		});
+		const res = await fetch(`http://localhost:3005/author/${author}`);
 		const authors: string[] = await res.json();
 		return authors;
 	} catch (e) {
@@ -24,9 +20,7 @@ export const getAuthor = async (author: string) => {
 
 export const getBook = async (path: string) => {
 	try {
-		const res = await fetch(`http://localhost:3005/book/${path}`, {
-			next: { revalidate: 60 * 60 * 2 },
-		});
+		const res = await fetch(`http://localhost:3005/book/${path}`);
 		const books: string[] = await res.json();
 		return books;
 	} catch (e) {
@@ -36,9 +30,7 @@ export const getBook = async (path: string) => {
 
 export const getTotalPage = async () => {
 	try {
-		const res = await fetch("http://localhost:3005/total-page", {
-			next: { revalidate: 60 * 60 * 2 },
-		});
+		const res = await fetch("http://localhost:3005/total-page");
 		const totalPage = await res.text();
 		return totalPage;
 	} catch (e) {

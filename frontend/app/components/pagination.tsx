@@ -1,10 +1,10 @@
-import { getTotalPage } from "../server/server";
-
-const Pagination = async ({ currentPage }: { currentPage: string }) => {
+const Pagination = ({
+	currentPage,
+	totalPage,
+}: { currentPage: number; totalPage: number }) => {
 	const maxPage = 5;
-	const totalPage = await getTotalPage();
-	const startPage = Math.max(1, Number(currentPage) - Math.floor(maxPage / 2));
-	const endPage = Math.min(Number(totalPage), startPage + maxPage - 1);
+	const startPage = Math.max(1, currentPage - Math.floor(maxPage / 2));
+	const endPage = Math.min(totalPage, startPage + maxPage - 1);
 
 	const pages = [];
 	for (let i = startPage; i <= endPage; i++) {
@@ -18,7 +18,7 @@ const Pagination = async ({ currentPage }: { currentPage: string }) => {
 					key={page}
 					href={`/ero/page/${page}`}
 					className={`w-11 leading-[2.75rem] text-neutral-100 text-lg text-center rounded-full ${
-						page === Number(currentPage)
+						page === currentPage
 							? "bg-neutral-800 font-semibold"
 							: "hover:bg-neutral-800"
 					}`}

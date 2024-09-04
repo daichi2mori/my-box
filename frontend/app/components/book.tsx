@@ -1,22 +1,17 @@
-import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@remix-run/react";
 
 const Book = ({ path }: { path: string }) => {
-  const encodedPath = encodeURIComponent(path);
+	const encodedPath = encodeURIComponent(path);
 
-  return (
-    <Link href={`/ero/detail/${path}`}>
-      <Image
-        src={`http://localhost:3005/cover/${encodedPath}`}
-        width={300}
-        height={300}
-        priority={true}
-        loading="eager"
-        alt="i"
-        className="w-full h-full object-contain"
-      />
-    </Link>
-  );
+	return (
+		<Link to={`/ero/detail/${encodedPath}`} prefetch="render">
+			<img
+				src={`http://localhost:3005/cover/${encodedPath}`}
+				alt="i"
+				className="w-full h-full object-contain"
+			/>
+		</Link>
+	);
 };
 
 export default Book;
