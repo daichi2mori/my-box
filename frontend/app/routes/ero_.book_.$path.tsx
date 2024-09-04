@@ -5,14 +5,14 @@ import { getBook } from "~/.server/server";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
 	invariant(params.path, "Missing path params");
-	
+
 	const books = await getBook(params.path);
-	
-	return json({ books }, { headers: {"Cache-Control": "public, max-age=3600"}});
+
+	return json({ books });
 };
 const Page = () => {
 	const { books } = useLoaderData<typeof loader>();
-	const baseUrl = 'http://192.168.11.9:3005';
+	const baseUrl = "http://192.168.11.9:3005";
 
 	return (
 		<main className="flex items-center gap-2 h-[100svh] snap-x snap-mandatory overflow-x-scroll">
