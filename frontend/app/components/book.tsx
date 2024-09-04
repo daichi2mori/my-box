@@ -6,8 +6,9 @@ const Book = ({ path }: { path: string }) => {
 		<Link href={`/ero/detail/${path}`}>
 			<Image
 				src={`http://localhost:3005/cover/${path}`}
-				width={500}
-				height={500}
+				width={300}
+				height={300}
+				priority
 				alt="i"
 				className="w-full h-full object-contain"
 			/>

@@ -16,7 +16,7 @@ const Pagination = async ({ currentPage }: { currentPage: string }) => {
 			{pages.map((page) => (
 				<a
 					key={page}
-					href={`/ero/${page}`}
+					href={`/ero/page/${page}`}
 					className={`w-11 leading-[2.75rem] text-neutral-100 text-lg text-center rounded-full ${
 						page === Number(currentPage)
 							? "bg-neutral-800 font-semibold"
