@@ -51,7 +51,7 @@ tasks:
   start:backend:
     desc: Start backend production
     dir: ./backend
-    cmd: ./backend.exe
+    cmd: ./backend
 
   start:frontend:
     desc: Start frontend production
