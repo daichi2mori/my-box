@@ -14,7 +14,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
 const Page = () => {
 	const { decodedPath, author, title } = useLoaderData<typeof loader>();
-	const baseUrl = "http://192.168.11.9:3005";
+	const baseUrl = "https://my-box-image.daichi2mori.com";
 
 	return (
 		<main className="w-full h-[100svh] flex flex-col items-center justify-center p-5">

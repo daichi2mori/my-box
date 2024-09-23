@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 
 const Book = ({ path }: { path: string }) => {
 	const encodedPath = encodeURIComponent(path);
-	const baseUrl = 'http://192.168.11.9:3005';
+	const baseUrl = 'https://my-box-image.daichi2mori.com';
 
 	return (
 		<Link to={`/ero/detail/${encodedPath}`} prefetch="render">

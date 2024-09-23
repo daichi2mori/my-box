@@ -12,7 +12,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 };
 const Page = () => {
 	const { books } = useLoaderData<typeof loader>();
-	const baseUrl = "http://192.168.11.9:3005";
+	const baseUrl = "https://my-box-image.daichi2mori.com";
 
 	return (
 		<main className="flex items-center gap-2 h-[100svh] snap-x snap-mandatory overflow-x-scroll">

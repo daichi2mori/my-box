@@ -1,4 +1,4 @@
-const baseUrl = 'http://192.168.11.9:3005';
+const baseUrl = 'http://localhost:3005';
 
 export const getCovers = async (page: string) => {
 	try {
