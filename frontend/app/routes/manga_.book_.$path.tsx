@@ -7,7 +7,7 @@ import { getBaseUrl } from "~/components/baseUrl";
 export const loader = async ({ params, request }: LoaderFunctionArgs) => {
 	invariant(params.path, "Missing path params");
 
-	const books = await getBook(params.path, 'ero');
+	const books = await getBook(params.path, 'manga');
 	const baseUrl = getBaseUrl(request);
 
 	return json({ books, baseUrl });
@@ -24,7 +24,7 @@ const Page = () => {
 					className="flex-shrink-0 snap-center w-screen grid place-items-center"
 				>
 					<img
-						src={`${baseUrl}/ero/image/${book}`}
+						src={`${baseUrl}/manga/image/${book}`}
 						alt="i"
 						className="w-screen max-w-2xl max-h-[99svh] object-contain"
 					/>

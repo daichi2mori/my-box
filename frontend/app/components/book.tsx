@@ -1,13 +1,12 @@
 import { Link } from "@remix-run/react";
 
-const Book = ({ path }: { path: string }) => {
+const Book = ({ path, baseUrl, type }: { path: string, baseUrl: string, type: 'ero' | 'manga' }) => {
 	const encodedPath = encodeURIComponent(path);
-	const baseUrl = 'https://my-box-image.daichi2mori.com';
 
 	return (
-		<Link to={`/ero/detail/${encodedPath}`} prefetch="render">
+		<Link to={`/${type}/detail/${encodedPath}`} prefetch="render">
 			<img
-				src={`${baseUrl}/cover/${encodedPath}`}
+				src={`${baseUrl}/${type}/cover/${encodedPath}`}
 				alt="i"
 				className="w-full h-full object-contain"
 			/>

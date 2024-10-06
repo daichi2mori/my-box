@@ -1,7 +1,8 @@
 const Pagination = ({
 	currentPage,
 	totalPage,
-}: { currentPage: number; totalPage: number }) => {
+	type
+}: { currentPage: number; totalPage: number, type: 'ero' | 'manga' }) => {
 	const maxPage = 5;
 	const startPage = Math.max(1, currentPage - Math.floor(maxPage / 2));
 	const endPage = Math.min(totalPage, startPage + maxPage - 1);
@@ -16,7 +17,7 @@ const Pagination = ({
 			{pages.map((page) => (
 				<a
 					key={page}
-					href={`/ero/page/${page}`}
+					href={`/${type}/page/${page}`}
 					className={`w-11 leading-[2.75rem] text-neutral-100 text-lg text-center rounded-full ${
 						page === currentPage
 							? "bg-neutral-800 font-semibold"

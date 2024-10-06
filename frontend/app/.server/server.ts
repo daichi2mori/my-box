@@ -1,8 +1,8 @@
 const baseUrl = 'http://192.168.11.9:3005';
 
-export const getCovers = async (page: string) => {
+export const getCovers = async (page: string, type: 'ero' | 'manga') => {
 	try {
-		const res = await fetch(`${baseUrl}/page/${page}`);
+		const res = await fetch(`${baseUrl}/${type}/page/${page}`);
 		const covers: string[] = await res.json();
 		return covers;
 	} catch (e) {
@@ -10,9 +10,9 @@ export const getCovers = async (page: string) => {
 	}
 };
 
-export const getAuthor = async (author: string) => {
+export const getAuthor = async (author: string, type: 'ero' | 'manga') => {
 	try {
-		const res = await fetch(`${baseUrl}/author/${author}`);
+		const res = await fetch(`${baseUrl}/${type}/author/${author}`);
 		const authors: string[] = await res.json();
 		return authors;
 	} catch (e) {
@@ -20,9 +20,9 @@ export const getAuthor = async (author: string) => {
 	}
 };
 
-export const getBook = async (path: string) => {
+export const getBook = async (path: string, type: 'ero' | 'manga') => {
 	try {
-		const res = await fetch(`${baseUrl}/book/${path}`);
+		const res = await fetch(`${baseUrl}/${type}/book/${path}`);
 		const books: string[] = await res.json();
 		return books;
 	} catch (e) {
@@ -30,9 +30,9 @@ export const getBook = async (path: string) => {
 	}
 };
 
-export const getTotalPage = async () => {
+export const getTotalPage = async (type: 'ero' | 'manga') => {
 	try {
-		const res = await fetch(`${baseUrl}/total-page`);
+		const res = await fetch(`${baseUrl}/${type}/total-page`);
 		const totalPage = await res.text();
 		return totalPage;
 	} catch (e) {

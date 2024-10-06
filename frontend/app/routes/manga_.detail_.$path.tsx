@@ -20,7 +20,7 @@ const Page = () => {
 	return (
 		<main className="w-full h-[100svh] flex flex-col items-center justify-center p-5">
 			<img
-				src={`${baseUrl}/ero/cover/${decodedPath}`}
+				src={`${baseUrl}/manga/cover/${decodedPath}`}
 				alt="i"
 				className="rounded-lg max-h-96 md:max-h-[35rem] object-contain"
 			/>
@@ -29,13 +29,13 @@ const Page = () => {
 					{title}
 				</p>
 				<Link
-					to={`/ero/author/${author}`}
+					to={`/manga/author/${author}`}
 					className="py-2 px-4 bg-neutral-100 text-background font-medium rounded-md"
 				>
 					{author}
 				</Link>
 				<Link
-					to={`/ero/book/${decodedPath}`}
+					to={`/manga/book/${decodedPath}`}
 					className="py-2 px-4 bg-neutral-100 text-background font-medium rounded-md"
 				>
 					続き

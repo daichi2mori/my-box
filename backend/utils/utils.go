@@ -2,6 +2,7 @@ package utils
 
 import (
 	"crypto/tls"
+	"io"
 	"log"
 	"math/rand"
 	"net/url"
@@ -10,6 +11,7 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 )
 
@@ -58,6 +60,16 @@ func ShuffleAndChunks(files []string) [][]string {
 	return chunks
 }
 
+func MakeChunks(files []string) [][]string {
+	var chunks = make([][]string, 0, len(files)/20+1)
+
+	for chunk := range slices.Chunk(files, 20) {
+		chunks = append(chunks, chunk)
+	}
+
+	return chunks
+}
+
 func BuildFilePath(path, root, searchName string) (string, error) {
 	decodedPath, err := url.QueryUnescape(path)
 	if err != nil {
@@ -89,4 +101,21 @@ func CollectFiles(root, searchName string) ([]string, error) {
 		return nil
 	})
 	return files, err
+}
+
+func SendFile(c *fiber.Ctx, path string) error {
+	image, err := os.Open(path)
+	if err != nil {
+		return c.Status(500).SendString("画像データを開けませんでした：" + err.Error())
+	}
+	defer image.Close()
+
+	c.Type("avif")
+
+	_, err = io.Copy(c.Response().BodyWriter(), image)
+	if err != nil {
+		return c.Status(500).SendString("ファイル送信中にエラーが発生しました：" + err.Error())
+	}
+
+	return nil
 }

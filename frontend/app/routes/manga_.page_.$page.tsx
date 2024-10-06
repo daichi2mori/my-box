@@ -10,9 +10,9 @@ export const loader = async ({ params, request }: LoaderFunctionArgs) => {
 	invariant(params.page, "Missing page params");
 
 	const currentPage = params.page;
-	const totalPage = (await getTotalPage('ero')) || "";
-	const covers = await getCovers(params.page, 'ero');
-	const baseUrl = getBaseUrl(request)
+	const totalPage = (await getTotalPage('manga')) || "";
+	const covers = await getCovers(params.page, 'manga');
+	const baseUrl = getBaseUrl(request);
 
 	return json({ covers, currentPage, totalPage, baseUrl });
 };
@@ -25,14 +25,14 @@ const Page = () => {
 			<div className="grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-3 p-2 max-w-screen-lg mx-auto">
 				{covers?.map((cover) => (
 					<div key={cover} className="bg-neutral-700 aspect-[794/1121]">
-						<Book path={cover} baseUrl={baseUrl} type="ero" />
+						<Book path={cover} baseUrl={baseUrl} type="manga" />
 					</div>
 				))}
 			</div>
 			<Pagination
 				currentPage={Number(currentPage)}
 				totalPage={Number(totalPage)}
-				type='ero'
+				type='manga'
 			/>
 		</main>
 	);

@@ -8,7 +8,7 @@ import Book from "~/components/book";
 export const loader = async ({ params, request }: LoaderFunctionArgs) => {
 	invariant(params.author, "Missing author params");
 
-	const covers = await getAuthor(params.author, 'ero');
+	const covers = await getAuthor(params.author, 'manga');
 	const baseUrl = getBaseUrl(request);
 
 	return json({ covers, baseUrl });
@@ -21,7 +21,7 @@ const Page = () => {
 		<main className="grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-3 p-2 max-w-screen-lg mx-auto">
 			{covers?.map((cover) => (
 				<div key={cover} className="bg-neutral-700 aspect-[794/1121]">
-					<Book path={cover} baseUrl={baseUrl} type="ero" />
+					<Book path={cover} baseUrl={baseUrl} type="manga" />
 				</div>
 			))}
 		</main>
