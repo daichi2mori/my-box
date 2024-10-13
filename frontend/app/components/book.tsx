@@ -1,10 +1,21 @@
 import { Link } from "@remix-run/react";
 
-const Book = ({ path, baseUrl, type }: { path: string, baseUrl: string, type: 'ero' | 'manga' }) => {
+type BookProps = {
+	path: string;
+	baseUrl: string;
+	type: 'ero' | 'manga';
+	dest: 'detail' | 'author' | 'book';
+}
+
+const Book = ({path, baseUrl, type, dest}: BookProps) => {
+	let destPath = encodeURIComponent(path);
+	if (dest === 'author') {
+		destPath = destPath.split("__")[0];
+	}
 	const encodedPath = encodeURIComponent(path);
 
 	return (
-		<Link to={`/${type}/detail/${encodedPath}`} prefetch="render">
+		<Link to={`/${type}/${dest}/${destPath}`} prefetch="render">
 			<img
 				src={`${baseUrl}/${type}/cover/${encodedPath}`}
 				alt="i"

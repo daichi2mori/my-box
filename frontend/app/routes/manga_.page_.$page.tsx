@@ -25,7 +25,7 @@ const Page = () => {
 			<div className="grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-3 p-2 max-w-screen-lg mx-auto">
 				{covers?.map((cover) => (
 					<div key={cover} className="bg-neutral-700 aspect-[794/1121]">
-						<Book path={cover} baseUrl={baseUrl} type="manga" />
+						<Book path={cover} baseUrl={baseUrl} type="manga" dest='author' />
 					</div>
 				))}
 			</div>
