@@ -7,7 +7,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
 	return (
-		<main className="h-[100dvh] flex flex-col items-center justify-center gap-4">
+		<main className="h-[100dvh] flex flex-col items-center justify-center gap-5">
 			<Link
 				to="/ero/page/1"
 				prefetch="viewport"
@@ -18,6 +18,9 @@ export default function Index() {
 			<Link to="/manga/page/1" prefetch="viewport" className="py-3 px-6 bg-neutral-100 text-background text-lg font-medium rounded-md">
 				Manga
 			</Link>
+			{/* <Link to="/video" prefetch="viewport" className="py-3 px-6 bg-neutral-100 text-background text-lg font-medium rounded-md">
+				Video
+			</Link> */}
 		</main>
 	);
 }
