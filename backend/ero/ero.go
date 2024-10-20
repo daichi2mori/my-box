@@ -53,8 +53,8 @@ func Cover(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(400).SendString("pathが不正です：" + err.Error())
 	}
-
-	return utils.SendFile(c, filePath)
+	c.Type("avif")
+	return c.SendFile(filePath, false)
 }
 
 func Author(c *fiber.Ctx) error {
@@ -117,5 +117,6 @@ func TotalPage(c *fiber.Ctx) error {
 
 func Image(c *fiber.Ctx) error {
 	normalizedPath := utils.BuildNormalizedPath(c.Params("path"), utils.GetENV("ERO_DIR"))
-	return utils.SendFile(c, normalizedPath)
+	c.Type("avif")
+	return c.SendFile(normalizedPath, false)
 }

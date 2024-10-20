@@ -2,7 +2,6 @@ package utils
 
 import (
 	"crypto/tls"
-	"io"
 	"log"
 	"math/rand"
 	"net/url"
@@ -11,7 +10,6 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 )
 
@@ -101,21 +99,4 @@ func CollectFiles(root, searchName string) ([]string, error) {
 		return nil
 	})
 	return files, err
-}
-
-func SendFile(c *fiber.Ctx, path string) error {
-	image, err := os.Open(path)
-	if err != nil {
-		return c.Status(500).SendString("画像データを開けませんでした：" + err.Error())
-	}
-	defer image.Close()
-
-	c.Type("avif")
-
-	_, err = io.Copy(c.Response().BodyWriter(), image)
-	if err != nil {
-		return c.Status(500).SendString("ファイル送信中にエラーが発生しました：" + err.Error())
-	}
-
-	return nil
 }
